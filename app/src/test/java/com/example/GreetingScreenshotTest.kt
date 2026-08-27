@@ -1,0 +1,50 @@
+package com.example
+
+import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onRoot
+import com.example.data.model.LedgerBalances
+import com.example.data.model.SyncState
+import com.example.ui.components.BalanceSummaryCards
+import com.example.ui.components.HeaderSection
+import com.example.ui.theme.MyApplicationTheme
+import com.github.takahirom.roborazzi.RobolectricDeviceQualifiers
+import com.github.takahirom.roborazzi.captureRoboImage
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
+import org.robolectric.annotation.GraphicsMode
+
+@RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(qualifiers = RobolectricDeviceQualifiers.Pixel8, sdk = [36])
+class GreetingScreenshotTest {
+
+  @get:Rule val composeTestRule = createComposeRule()
+
+  @Test
+  fun greeting_screenshot() {
+    composeTestRule.setContent {
+      MyApplicationTheme {
+        BalanceSummaryCards(
+          balances = LedgerBalances(
+            munawarBalance = 15000.0,
+            khalidBalance = 25000.0,
+            totalBalance = 40000.0,
+            totalGotAmount = 50000.0,
+            totalGaveAmount = 10000.0,
+            totalEntriesCount = 12,
+            munawarEntriesCount = 6,
+            khalidEntriesCount = 6
+          ),
+          onMunawarCardClick = {},
+          onKhalidCardClick = {},
+          onTotalCardClick = {}
+        )
+      }
+    }
+
+    composeTestRule.onRoot().captureRoboImage(filePath = "src/test/screenshots/greeting.png")
+  }
+}

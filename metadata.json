@@ -1,0 +1,6 @@
+{
+  "name": "MAS Accounts",
+  "description": "Live Multi-Device Ledger for Munawar and Khalid with live real-time sync, cash balances, entry feed, and offline persistence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
